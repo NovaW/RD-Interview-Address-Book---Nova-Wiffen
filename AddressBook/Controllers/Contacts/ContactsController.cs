@@ -4,10 +4,11 @@ using AddressBookEntityFramework.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
 
 namespace AddressBook.Contacts.Controllers
 {
-    public class ContactsController : IContactsController
+    public class ContactsController : ApiController, IContactsController
     {
         public Models.Contact CreateContact(ContactModel createRequest)
         {
@@ -40,7 +41,9 @@ namespace AddressBook.Contacts.Controllers
         {
             using (var dbContext = new ContactsContext())
             {
-                var contacts = dbContext.Contacts.Select(x => ConvertContactEntityToContactModel(x));
+                var contactsList = dbContext.Contacts.Select(x => x).ToList();
+                var contacts = contactsList.Select(x => ConvertContactEntityToContactModel(x)).ToList();
+
                 return contacts;
             }
         }
@@ -52,7 +55,7 @@ namespace AddressBook.Contacts.Controllers
                 var searchResults = dbContext.Contacts.Where(
                     x => x.FirstName.Contains(searchTerm)
                     || x.LastName.Contains(searchTerm)
-                );
+                ).ToList();
                 return searchResults.Select(x => ConvertContactEntityToContactModel(x));
             }
         }

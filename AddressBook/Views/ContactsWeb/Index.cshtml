@@ -1,0 +1,49 @@
+﻿@model AddressBook.Models.ContactsViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<table class="table">
+    <tr>
+        <td><b>First Name</b></td>
+        <td><b>Last Name</b></td>
+        <td><b>Contact Numbers</b></td>
+        <td><b>Email Addresses</b></td>
+        <td><b>Options</b></td>
+    </tr>
+    @foreach (var contact in Model.Contacts)
+    {
+    <tr>
+        <td>@contact.ContactModel.FirstName</td>
+        <td>@contact.ContactModel.LastName</td>
+        <td>
+            <table>
+                @foreach (var number in contact.ContactModel.ContactNumbers)
+                {
+                    <tr>
+                        <td>
+                            @number
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            <table>
+                @foreach (var address in contact.ContactModel.EmailAddresses)
+                {
+                    <tr>
+                        <td>
+                            @address
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            <button>Edit</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+    }
+    </table>
