@@ -52,10 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactsContext.cs" />
-    <Compile Include="ContactsInitializer.cs" />
     <Compile Include="Migrations\201912041353075_init.cs" />
     <Compile Include="Migrations\201912041353075_init.designer.cs">
       <DependentUpon>201912041353075_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912041535187_external_contact_id.cs" />
+    <Compile Include="Migrations\201912041535187_external_contact_id.designer.cs">
+      <DependentUpon>201912041535187_external_contact_id.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -70,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912041353075_init.resx">
       <DependentUpon>201912041353075_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912041535187_external_contact_id.resx">
+      <DependentUpon>201912041535187_external_contact_id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
