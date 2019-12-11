@@ -37,6 +37,7 @@ namespace AddressBook.Controllers
             {
                 Contacts = results
             };
+
             return View(viewModel);
         }
 
@@ -83,13 +84,18 @@ namespace AddressBook.Controllers
             //return View(viewModel);
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("delete/{externalId}")]
         public ActionResult DeleteContact(Guid externalId)
         {
-            var result = _contactsController.DeleteContact(externalId);
+            _contactsController.DeleteContact(externalId);
 
-            return GetContacts();
+            var results = _contactsController.GetContacts();
+            var viewModel = new ContactsViewModel
+            {
+                Contacts = results
+            };
+            return View("Index", viewModel);
         }
     }
 }

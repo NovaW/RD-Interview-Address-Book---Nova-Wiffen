@@ -21,20 +21,18 @@ namespace AddressBook.Contacts.Controllers
             return ConvertContactEntityToContactModel(contactEntity);
         }
 
-        public bool DeleteContact(Guid ContactId)
+        public void DeleteContact(Guid ContactId)
         {
             using (var dbContext = new ContactsContext())
             {
-                var searchResults = dbContext.Contacts.Where(x => x.ExternalId == ContactId);
-                if (searchResults.Count() == 0) { 
-                    return false;
+                var itemToRemove = dbContext.Contacts.SingleOrDefault(x => x.ExternalId == ContactId);
+                if (itemToRemove != null) {
+                    dbContext.ContactNumbers.RemoveRange(itemToRemove.ContactNumbers);
+                    dbContext.EmailAddresses.RemoveRange(itemToRemove.EmailAddresses);
+                    dbContext.Contacts.Remove(itemToRemove);
+                    dbContext.SaveChanges();
                 }
-
-                var entity = searchResults.First();
-                dbContext.Contacts.Remove(entity);
-                dbContext.SaveChanges();
             }
-            return true;
         }
 
         public IEnumerable<Models.Contact> GetContacts()

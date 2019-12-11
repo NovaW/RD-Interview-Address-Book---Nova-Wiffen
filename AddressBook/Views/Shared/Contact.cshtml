@@ -1,0 +1,52 @@
+﻿@model AddressBook.Models.Contact
+@{
+    ViewBag.Title = "Contact";
+}
+
+<tr>
+    <td>@Model.ContactModel.FirstName</td>
+    <td>@Model.ContactModel.LastName</td>
+    <td>
+        <table>
+            @foreach (var number in Model.ContactModel.ContactNumbers)
+            {
+                <tr>
+                    <td>
+                        @number
+                    </td>
+                </tr>
+            }
+        </table>
+    </td>
+    <td>
+        <table>
+            @foreach (var address in Model.ContactModel.EmailAddresses)
+            {
+                <tr>
+                    <td>
+                        @address
+                    </td>
+                </tr>
+            }
+        </table>
+    </td>
+    <td>
+        <button>Edit</button>
+
+        @using (Html.BeginForm(actionName: "DeleteContact", controllerName: "ContactsWeb", method: FormMethod.Post, routeValues: new { externalId = Model.ExternalId }))
+        {
+            <button type="submit">Delete</button>
+        }
+
+        @*@Html.ActionLink(
+            linkText: "Delete",
+            actionName: "DeleteContact",
+            controllerName: "ContactsWeb",
+            //routeValues: new { externalId = contact.ExternalId },
+            routeValues: Model.ExternalId,
+            //htmlAttributes: new { @class="btn btn-primary" }
+            htmlAttributes: null
+        )*@
+    </td>
+</tr>
+
