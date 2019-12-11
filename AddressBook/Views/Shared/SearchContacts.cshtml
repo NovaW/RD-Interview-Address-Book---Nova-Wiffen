@@ -1,0 +1,11 @@
+﻿@model AddressBook.Models.ContactsViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+@using (Html.BeginForm(actionName: "SearchContacts", controllerName: "ContactsWeb", method: FormMethod.Post))
+{
+    @Html.TextBoxFor(model => model.SearchTerm)
+    <button type="submit" >Search</button>
+}
+
