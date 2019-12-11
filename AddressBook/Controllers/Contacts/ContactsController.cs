@@ -56,7 +56,7 @@ namespace AddressBook.Contacts.Controllers
                     x => x.FirstName.Contains(searchTerm)
                     || x.LastName.Contains(searchTerm)
                 ).ToList();
-                return searchResults.Select(x => ConvertContactEntityToContactModel(x));
+                return searchResults.Select(x => ConvertContactEntityToContactModel(x)).ToList();
             }
         }
 

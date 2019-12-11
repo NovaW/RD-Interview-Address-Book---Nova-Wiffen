@@ -47,9 +47,10 @@ namespace AddressBook.Controllers
             var results = _contactsController.SearchContacts(searchTerm);
             var viewModel = new ContactsViewModel
             {
+                SearchTerm = searchTerm,
                 Contacts = results
             };
-            return View(viewModel);
+            return View("Index", viewModel);
         }
 
         [HttpPost]
