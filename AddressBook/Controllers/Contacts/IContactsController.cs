@@ -12,6 +12,6 @@ namespace AddressBook.Contacts.Controllers
         IEnumerable<Contact> SearchContacts(string searchTerm);
         Contact CreateContact(ContactModel createRequest);
         Contact UpdateContact(Contact updateRequest);
-        bool DeleteContact(Guid ContactId);
+        void DeleteContact(Guid ContactId);
     }
 }
